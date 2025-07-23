@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SANNSTOREID</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+</head>
+<body>
+
+   <canvas id="interactive-bg"></canvas>
+  
+  <div id="preloader">
+  <img src="https://i.ibb.co/cS6MqBDc/letter-s-logo-icon-design-template-elements-9999-65444.jpg" alt="Loading..." />
+</div>
+
+  <canvas id="starfield"></canvas>
+
+
+<!-- KONTEN UTAMA -->
+<div class="container" data-aos="fade-up">
+  <img class="profile-img" src="https://i.ibb.co/d4xkNHVj/5f2259631fb049935ba0f1e3eb0d4d04.jpg" alt="Foto Profil SANNSTOREID" />
+  <h1>SANNSTOREID</h1>
+    <p class="tagline"><span class="typing" id="typingText"></span>TOP UP | JOKI | JB AKUN ALL GAME</p>
+
+
+    <div class="social-icons">
+      <a href="https://instagram.com/thereall.sann" target="_blank"><i class="fab fa-instagram"></i></a>
+      <a href="https://wa.me/6282120370582" target="_blank"><i class="fab fa-whatsapp"></i></a>
+      <a href="https://youtube.com" target="_blank"><i class="fab fa-youtube"></i></a>
+      <a href="#"><i class="fas fa-gamepad"></i></a>
+    </div>
+
+    <div class="stats-box" data-aos="fade-up">
+  <h3>📊 Statistik Toko Kami</h3>
+  <ul>
+    <li>🔥 Total Order Hari Ini: <span id="orderToday" data-target="244">0</span></li>
+<li>🔥 Total Order Minggu Ini: <span id="activeCustomers" data-target="937">0</span></li>
+    <li>🚀 Pelanggan Aktif Bulan Ini: <span id="ordertoday" data-target="4826"</li>
+<li>⭐ Rating Layanan: <span id="rating" data-target="4.9" data-decimal="true">0</span></li>
+  </ul>
+</div>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <div class="stats-container">
+  <!-- Baris Pertama -->
+  <div class="stats-row">
+    <div class="stat-card">
+      <div class="stat-icon"><i class="fa-solid fa-cart-shopping"></i></div>
+      <p class="stat-title">Jumlah Orderan (ALL)</p>
+      <p class="stat-value">16.257</p>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon"><i class="fa-solid fa-money-bill-wave"></i></div>
+      <p class="stat-title">Total Pemasukan</p>
+      <p class="stat-value">Rp 9.256.642</p>
+    </div>
+  </div>
+
+  <!-- Baris Kedua -->
+  <div class="stats-row">
+    <div class="stat-card">
+      <div class="stat-icon"><i class="fa-solid fa-file-invoice-dollar"></i></div>
+      <p class="stat-title">Saldo Kotor</p>
+      <p class="stat-value">Rp 9.256.642</p>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon"><i class="fa-solid fa-scale-balanced"></i></div>
+      <p class="stat-title">Saldo Bersih</p>
+      <p class="stat-value">Rp 8.793.809</p>
+    </div>
+  </div>
+</div>
+    
+  <!-- SCRIPT -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init();
+
+    // Dark mode toggle
+    document.getElementById('darkToggle').addEventListener('change', function () {
+      document.body.classList.toggle('dark-mode', this.checked);
+    });
+
+    // Typing effect
+    const text = "TOPUP | JOKI | JB AKUN ALL GAME";
+    let index = 0;
+    function typeEffect() {
+      if (index < text.length) {
+        document.getElementById("typingText").textContent += text.charAt(index);
+        index++;
+        setTimeout(typeEffect, 80);
+      }
+    }
+    window.onload = typeEffect;
+  </script>
+
+   <a href="https://wa.me/6282120370582" class="chat-float" title="Live Chat Admin">
+  <img src="https://i.ibb.co/Y7XFZbN6/user-headset-removebg-preview.png" alt="Chat Admin">
+</a>
+
+  <script>
+  const canvas = document.getElementById("starfield");
+  const ctx = canvas.getContext("2d");
+
+  let stars = [];
+  const numStars = 150;
+
+  function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+
+  function createStars() {
+    stars = [];
+    for (let i = 0; i < numStars; i++) {
+      stars.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        radius: Math.random() * 1.5,
+        speed: Math.random() * 0.5 + 0.1,
+      });
+    }
+  }
+
+  function drawStars() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = "white";
+    for (let star of stars) {
+      ctx.beginPath();
+      ctx.arc(star.x, star.y, star.radius, 0, 2 * Math.PI);
+      ctx.fill();
+    }
+  }
+
+  function moveStars() {
+    for (let star of stars) {
+      star.y += star.speed;
+      if (star.y > canvas.height) {
+        star.y = 0;
+        star.x = Math.random() * canvas.width;
+      }
+    }
+  }
+
+  function animate() {
+    drawStars();
+    moveStars();
+    requestAnimationFrame(animate);
+  }
+
+  window.addEventListener("resize", () => {
+    resizeCanvas();
+    createStars();
+  });
+
+  resizeCanvas();
+  createStars();
+  animate();
+</script>
+
+  <script>
+  window.addEventListener("load", function () {
+    const loader = document.getElementById("preloader");
+    setTimeout(() => {
+      loader.style.opacity = "0";
+      loader.style.visibility = "hidden";
+    }, 1500); // Bisa kamu ubah durasinya
+  });
+</script>
+
+  <script>
+  const userLang = navigator.language || navigator.userLanguage;
+  const textID = "Selamat datang di SANNSTOREID!";
+  const textEN = "Welcome to SANNSTOREID!";
+  const text = userLang.startsWith("en") ? textEN : textID;
+
+  window.addEventListener("load", () => {
+    const header = document.querySelector("h1");
+    if (header) header.textContent = text;
+  });
+</script>
+
+  <script>
+  function animateCountUp(element, target, isDecimal = false) {
+    let start = 0;
+    const duration = 2000; // durasi animasi (ms)
+    const startTime = performance.now();
+
+    function update(currentTime) {
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const currentValue = isDecimal
+        ? (progress * target).toFixed(1)
+        : Math.floor(progress * target);
+      element.textContent = currentValue;
+
+      if (progress < 1) {
+        requestAnimationFrame(update);
+      }
+    }
+
+    requestAnimationFrame(update);
+  }
+
+  window.addEventListener("load", () => {
+    document.querySelectorAll(".stats-box span").forEach((el) => {
+      const target = parseFloat(el.getAttribute("data-target"));
+      const isDecimal = el.dataset.decimal === "true";
+      animateCountUp(el, target, isDecimal);
+    });
+  });
+</script>
+
+  <script>
+document.getElementById("waForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+    const nama = document.getElementById("nama").value;
+    const username = document.getElementById("username").value;
+    const layanan = document.getElementById("layanan").value;
+    const catatan = document.getElementById("catatan").value;
+
+    const nomorTujuan = "6282120370582"; 
+
+    const pesan = `Halo Admin, saya ingin order:%0A
+🔹 Nama: ${nama}%0A
+🔹 Username Game: ${username}%0A
+🔹 Layanan: ${layanan}%0A
+🔹 Catatan: ${catatan || '-'}%0A
+Terima kasih 🙏`;
+
+    const linkWa = `https://wa.me/6282120370582=halo mas saya mau psen akun epeep`;
+    window.open(linkWa, "_blank");
+  });
+</script>
+
+  <script>
+  const canvas = document.getElementById("interactive-bg");
+  const ctx = canvas.getContext("2d");
+
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  const dots = Array.from({ length: 80 }, () => ({
+    x: Math.random() * canvas.width,
+    y: Math.random() * canvas.height,
+    r: Math.random() * 2 + 1,
+    dx: (Math.random() - 0.5) * 0.5,
+    dy: (Math.random() - 0.5) * 0.5
+  }));
+
+  function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    for (let dot of dots) {
+      ctx.beginPath();
+      ctx.arc(dot.x, dot.y, dot.r, 0, Math.PI * 2);
+      ctx.fillStyle = "rgba(0, 191, 255, 0.5)"; // biru langit transparan
+      ctx.fill();
+      dot.x += dot.dx;
+      dot.y += dot.dy;
+
+      // Bounce dari pinggir layar
+      if (dot.x < 0 || dot.x > canvas.width) dot.dx *= -1;
+      if (dot.y < 0 || dot.y > canvas.height) dot.dy *= -1;
+    }
+    requestAnimationFrame(draw);
+  }
+
+  draw();
+
+  window.addEventListener("resize", () => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  });
+</script>
+
+    <script>
+  const text = "✳️ Bergabung Dengan SANNSTOREID di Linktree";
+  const el = document.querySelector(".typewriter-text");
+  let i = 0;
+
+  function type() {
+    if (i < text.length) {
+      el.textContent += text.charAt(i);
+      i++;
+      setTimeout(type, 100); // kecepatan ketik
+    }
+  }
+
+  type();
+</script>
+
+
+   <script>
+  const counters = document.querySelectorAll('.counter');
+
+  counters.forEach(counter => {
+    counter.innerText = '0';
+
+    const updateCounter = () => {
+      const target = +counter.getAttribute('data-target');
+      const current = +counter.innerText.replace(/\D/g, '');
+      const increment = target / 100;
+
+      if (current < target) {
+        counter.innerText = Math.ceil(current + increment).toLocaleString();
+        setTimeout(updateCounter, 20);
+      } else {
+        counter.innerText = target.toLocaleString();
+      }
+    };
+
+    updateCounter();
+  });
+</script>
+    
+</body>
+</html>
+
